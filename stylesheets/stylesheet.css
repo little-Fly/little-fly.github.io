@@ -243,3 +243,23 @@ a {
 @media screen and (max-width: 42em) {
   .site-footer {
     font-size: 0.9rem; } }
+	
+.page-nav{
+	text-align: center;
+	
+}
+
+.page-nav a{
+	padding:1rem;
+}
+
+.head-first{
+	font-size:22px;
+	height:-1px;
+	margin-top:0px;
+	background:#48525e;
+}
+.font-color{
+	margin-left:5px;
+	color:snow;
+}
