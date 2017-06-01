@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Little-fly.GitHub.io by little-Fly</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="../stylesheets/code.css" media="screen"></link>
+  </head>
+  <body>
+	
+<h3>java中的工厂设计模式</h3>
+<div>
+	<textarea cols="50" rows="15" name="code" class="xhtml">
+    interface Fruit { //水果类
+		public void eat();
+	}
+	
+	class Apple implements Fruit {
+		public void eat(){
+			system.out.println("吃苹果");
+		}
+	}
+	
+	class Test {
+		public static void main(String args[]) {
+			Fruit f = new Apple();
+			f.eat();
+		}
+	}
+	
+	//如果此时新增加一个Cherry的子类而要去修改客户端的代码，影响客户端的执行，设计就不合理
+	//参考 java的可移植性   
+	// 不可移植性： 程序 →→ 操作系统
+	// 可移植性：   程序 →→ JVM →→ 操作系统
+	class Cherry implements Fruit {
+		public void eat() {
+			System.out.println("吃草莓");
+		}
+	}
+	
+	class Factory {
+		public static Fruit getInstance(String className) {
+			if ("Apple".equals(className)) {
+				return new Apple();
+			} else if ("Cherry".equals(className)) {
+				return new Cherry();
+			} else {
+				return null;
+			}
+		}
+	}
+	
+	public class Test {
+		public static void main(String args[]) {
+			Fruit f = Factory.getInstance(args[0]);
+			f.eat();
+		}
+	}
+	
+	
+	
+	</textarea>
+</div>
+  </body>
+</html>
+
+
+
