@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Little-fly.GitHub.io by little-Fly</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="../stylesheets/code.css" media="screen"></link>
+  </head>
+  <body>
+	
+<h3>java中的代理设计模式</h3>
+<div>
+	<textarea cols="100" rows="15" name="code" class="xhtml">
+	//一个接口只有一个核心主题，如果在过程中只依靠一个核心主题无法完成所需功能，则需要一个代理主题
+	
+    interface Subject { 	//核心主题
+		public void eat();	//核心操作
+	}
+	
+	class RealSubject implements Subject {
+		public void eat(){
+			system.out.println("去饭店吃东西");
+		}
+	}
+	
+	class ProxySubject implements Subject {
+		private Subject subject;//代理的真实主题
+		
+		public ProxySubject(Subject subject) {
+			this.subject = subject;
+		}
+		
+		public void prepare() {
+			System.out.println("【吃饭前的准备】买菜、洗菜、做饭");
+		}
+		
+		public void eat() {
+			this.prepare();
+			this.subject.eat();
+			this.destory();
+		}
+		
+		public void destory() {
+			System.out.println("【吃饭后的收尾】交钱结账");
+		}
+	}
+	
+	
+	public class Test {
+		public static void main(String args[]) {
+			Subject sub = new ProxySubject(new RealSubject);
+			sub.eat();
+		}
+	}
+	
+	
+	
+	</textarea>
+</div>
+  </body>
+</html>
+
+
+
