@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Little-fly.GitHub.io by little-Fly</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="../stylesheets/code.css" media="screen"></link>
+  </head>
+  <body>
+	
+<h3>linux下mysql跨服务器访问问题</h3>
+<div>
+	<textarea cols="50" rows="15" name="code" class="xhtml">
+		问题描述：从另一台服务器访问mysql安装服务器，报[10000]DBException
+		解决方法：授权mysql其它服务器访问权限
+			//'%'代表所有主机
+			grant all privileges on *.* to user@'%' identified by 'password';		
+			FLUSH PRIVILEGES;
+	</textarea>
+</div>
+  </body>
+</html>
+
+
+
