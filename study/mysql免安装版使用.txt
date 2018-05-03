@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Little-fly.GitHub.io by little-Fly</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="../stylesheets/code.css" media="screen"></link>
+  </head>
+  <body>
+	
+<h3>mysql免安装版</h3>
+<div>
+	<textarea cols="50" rows="15" name="code" class="xhtml">
+		1.添加mysql\bin路径到path
+		2.net install 安装
+		3.net start mysql启动服务
+	</textarea>
+</div>
+  </body>
+</html>
