@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Little-fly.GitHub.io by little-Fly</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="../stylesheets/code.css" media="screen"></link>
+  </head>
+  <body>
+	
+<h3>关于nigix</h3>
+<div>
+	<textarea cols="50" rows="15" name="code" class="xhtml">
+    1、为什么说nigix是反向代理
+		客户端发出请求，并不是直接由tomcat接收处理，而是要先经过nigix，然后nigix再转发给tomcat服务器；
+		tomcat处理完成后也不是直接返回给客户端，而是先经过nigix再返回给客户端
+		在整个过程中，nginx貌似充当了真正的服务器，其实并不是，nginx只是起到了转发的作用。
+		根据反向代理的特性，我们可以把不需要服务器处理的静态资源（HTML，JS，CSS等）直接让nginx处理，JSP等让服务器处理，这样就减轻了服务器的压力。
+	2、upstream experiencecluster {server 10.163.240.x:8080;}
+    server {
+		#侦听10.163.240.x的80端口
+        listen       80;
+        server_name  experience.grosup.com;
+		charset utf-8; 
+		location /performanceA/ {
+			root   /performanceA;  #定义服务器的默认网站根目录位置
+			proxy_pass http://experiencecluster;
+			index  index.jsp index.php index.html index.htm;  #定义首页索引文件的名称
+			proxy_set_header Host $host;
+			proxy_set_header X-Real-IP $remote_addr;
+			proxy_set_header REMOTE-HOST $remote_addr;
+			proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+		}
+		
+	listen：代表当前代理服务器的访问端口号，默认是80端口。如果要配置多个server，这里的默认端口需要改变，要不然系统不知道进入哪个代理服务。
+	server_name：表示代理服务需要转发的地址，默认是localhost。
+	location：表示匹配客户端发送请求的路径，“/”代表所有请求的路径都能匹配
+	root：表示请求别匹配到后，会在这个文件夹内寻找相应的文件，root对后面静态资源的处理很重要
+	index：如果代理没有指定主页，将默认进入index配置下寻找主页，可以配置多个，第一个主页找不到，访问第二个，以此类推。
+	proxy_pass：转发地址
+	
+	3.动、静资源分离
+	location ~ \.(js|css|html|jpg|gif|png|swf){
+			root /usr/local/ROOT/;
+	}
+	上面代码新加了一个location配置，用于过滤静态文件，当客户端请求这些静态文件时，nginx会转发到“/usr/local/ROOT/”文件夹下
+	（ROOT文件夹是从tomcat的webapps里面拷贝出来的），从而不需要请求服务器。
+	</textarea>
+</div>
+  </body>
+</html>
+
+
+
